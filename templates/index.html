@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css.css') }}">
+</head>
+<body class="container-fluid">
+    <h1>Login and Registration</h1>
+    <div class=flash">
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p>{{message | safe}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <div class='row'>
+        <div class='left col'>
+        <h3>Register here!</h3>
+            <form action="/" method="POST">
+                <div class="form-group">
+                    <label for="ffname">First Name:</label>
+                    <input type="text" id="ffname" name="first_name" class="form-control" placeholder="{{session[first_name]}}">
+                </div>
+                <div class="form-group">
+                    <label for="llname">Last Name:</label>
+                    <input type="text" id="llname" name="last_name" class="form-control" placeholder="{{session[last_name]}}">
+                </div>
+                <div class="form-group">
+                        <label for="eemail">Email:</label>
+                        <input type="text" id="eemail" name="email" class="form-control" placeholder="{{session[email]}}">
+                </div>
+                <div class="form-group">
+                    <label for="pw">Password:</label>
+                    <input type="password" id="pw" name="password" class="form-control" placeholder="Enter password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmpassword">Confirm password:</label>
+                    <input type="password" id="pwconfirm" name="confirmpassword" class="form-control" placeholder="Confirm password">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <div class='right col'>
+            <h5>Login here!</h5>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="eeemail">Email:</label>
+                    <input type="text" id="eeemail" name="email" class="form-control" placeholder="User e-mail address here">
+                </div>
+                <div class="form-group">
+                    <label for="ppword">Password</label>
+                    <input type="password" id="ppword" name="password"  placeholder="User password here" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Login!</button>
+            </form>
+        </div>
+    </div>
+</body>
+</body>
+</html>
